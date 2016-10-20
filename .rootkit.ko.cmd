@@ -1,0 +1,1 @@
+cmd_/home/punk/dev/m-dev/rootkit-examples/rootkit.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/punk/dev/m-dev/rootkit-examples/rootkit.ko /home/punk/dev/m-dev/rootkit-examples/rootkit.o /home/punk/dev/m-dev/rootkit-examples/rootkit.mod.o

