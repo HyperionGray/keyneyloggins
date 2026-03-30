@@ -1,19 +1,13 @@
-CONFIG_MODULE_SIG=n
-ifeq ($(KERNELRELEASE),)
+# keyneyloggins - top-level build
+# Delegates to src/ for the kernel module build
 
-KERNELDIR ?= /lib/modules/$(shell uname -r)/build
-PWD := $(shell pwd)
-
-.PHONY: build clean
+.PHONY: build clean reload
 
 build:
-	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules
+	$(MAKE) -C src build
 
 clean:
-	rm -rf *.o *~ core .depend .*.cmd *.ko *.mod.c
-else
+	$(MAKE) -C src clean
 
-$(info Building with KERNELRELEASE = ${KERNELRELEASE})
-obj-m :=	rootkit.o
-
-endif
+reload:
+	./reload.sh
