@@ -7,13 +7,14 @@ PWD := $(shell pwd)
 .PHONY: build clean
 
 build:
-	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules
+	$(MAKE) -C $(KERNELDIR) M=$(PWD)/src modules
 
 clean:
-	rm -rf *.o *~ core .depend .*.cmd *.ko *.mod.c
+	rm -rf src/*.o src/*~ src/.*.cmd src/*.ko src/*.mod src/*.mod.c src/*.mod.o
+	rm -rf src/Module.symvers src/modules.order src/.tmp_versions
 else
 
 $(info Building with KERNELRELEASE = ${KERNELRELEASE})
-obj-m :=	rootkit.o
+obj-m := rootkit.o
 
 endif
