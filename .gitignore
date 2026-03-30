@@ -1,0 +1,32 @@
+# Kernel module build artifacts
+*.o
+*.ko
+*.mod
+*.mod.c
+*.mod.o
+*.order
+*.symvers
+*.unsigned
+.*.cmd
+.tmp_versions/
+Module.symvers
+modules.order
+
+# Build output
+build/
+
+# Compiled binaries
+*.out
+a.out
+
+# BFG and other tools
+*.jar
+
+# Editor/tool temp files
+*~
+*.swp
+*.swo
+
+# Bish index files
+.bish-index
+.bish.sqlite
