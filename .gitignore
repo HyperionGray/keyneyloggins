@@ -1,0 +1,28 @@
+# Kernel module build artifacts
+*.o
+*.ko
+*.mod
+*.mod.c
+*.mod.o
+*.order
+*.symvers
+*.cmd
+.tmp_versions/
+.cache.mk
+
+# Editor backups
+*~
+*.swp
+*.swo
+\#*\#
+
+# Compiled binaries
+*.out
+a.out
+
+# bish index files
+.bish-index
+.bish.sqlite
+
+# Build output directory
+build/
